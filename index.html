@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Устаљени језички изрази — КВИЗ!</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
@@ -21,622 +16,442 @@
             align-items: flex-start;
             padding: 30px 15px;
         }
-
-        .container {
-            max-width: 700px;
-            width: 100%;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
+        .container { max-width: 700px; width: 100%; }
+        .header { text-align: center; margin-bottom: 30px; }
         .header h1 {
-            font-size: 2rem;
-            margin-bottom: 8px;
+            font-size: 2rem; margin-bottom: 8px;
             background: linear-gradient(90deg, #e94560, #f5a623, #e94560);
             background-size: 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shimmer 3s infinite;
         }
-
         @keyframes shimmer {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
-        .header p {
-            color: #a0aec0;
-            font-size: 1rem;
-        }
-
+        .header p { color: #a0aec0; font-size: 1rem; }
         .progress-bar {
-            width: 100%;
-            height: 8px;
+            width: 100%; height: 8px;
             background: rgba(255,255,255,0.1);
-            border-radius: 4px;
-            margin-bottom: 25px;
-            overflow: hidden;
+            border-radius: 4px; margin-bottom: 25px; overflow: hidden;
         }
-
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #e94560, #f5a623);
-            border-radius: 4px;
-            transition: width 0.5s ease;
-            width: 0%;
+            border-radius: 4px; transition: width 0.5s ease; width: 0%;
         }
-
         .progress-text {
-            text-align: center;
-            color: #a0aec0;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+            text-align: center; color: #a0aec0;
+            font-size: 0.9rem; margin-bottom: 20px;
         }
-
         .question-card {
             background: rgba(255,255,255,0.07);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 20px;
-            animation: fadeIn 0.4s ease;
+            border-radius: 16px; padding: 30px;
+            margin-bottom: 20px; animation: fadeIn 0.4s ease;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .question-number {
-            font-size: 0.85rem;
-            color: #e94560;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
+            font-size: 0.85rem; color: #e94560;
+            font-weight: 700; letter-spacing: 1px; margin-bottom: 10px;
         }
-
         .question-text {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            line-height: 1.5;
+            font-size: 1.25rem; font-weight: 600;
+            margin-bottom: 25px; line-height: 1.5;
         }
-
-        .question-text span.highlight {
-            color: #f5a623;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
+        .highlight { color: #f5a623; }
+        .options { display: flex; flex-direction: column; gap: 12px; }
         .option-btn {
             background: rgba(255,255,255,0.05);
             border: 2px solid rgba(255,255,255,0.15);
-            border-radius: 12px;
-            padding: 15px 20px;
-            color: #fff;
-            font-size: 1.05rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
-            font-family: inherit;
+            border-radius: 12px; padding: 15px 20px;
+            color: #fff; font-size: 1.05rem;
+            cursor: pointer; transition: all 0.3s ease;
+            text-align: left; font-family: inherit;
         }
-
         .option-btn:hover:not(.disabled) {
             background: rgba(255,255,255,0.12);
             border-color: rgba(255,255,255,0.3);
             transform: translateX(5px);
         }
-
         .option-btn.correct {
             background: rgba(46, 213, 115, 0.2);
             border-color: #2ed573;
-            animation: pulse-green 0.5s ease;
         }
-
         .option-btn.wrong {
             background: rgba(255, 71, 87, 0.2);
             border-color: #ff4757;
             animation: shake 0.4s ease;
         }
-
-        .option-btn.disabled {
-            cursor: default;
-            opacity: 0.6;
-        }
-
+        .option-btn.disabled { cursor: default; opacity: 0.6; }
         .option-btn.show-correct {
             background: rgba(46, 213, 115, 0.15);
-            border-color: #2ed573;
-            opacity: 1 !important;
+            border-color: #2ed573; opacity: 1 !important;
         }
-
-        @keyframes pulse-green {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-8px); }
             75% { transform: translateX(8px); }
         }
-
-        .input-group {
-            display: flex;
-            gap: 10px;
-        }
-
+        .input-group { display: flex; gap: 10px; }
         .text-input {
-            flex: 1;
-            background: rgba(255,255,255,0.08);
+            flex: 1; background: rgba(255,255,255,0.08);
             border: 2px solid rgba(255,255,255,0.15);
-            border-radius: 12px;
-            padding: 15px 20px;
-            color: #fff;
-            font-size: 1.05rem;
-            font-family: inherit;
-            outline: none;
+            border-radius: 12px; padding: 15px 20px;
+            color: #fff; font-size: 1.05rem;
+            font-family: inherit; outline: none;
             transition: border-color 0.3s;
         }
-
-        .text-input:focus {
-            border-color: #e94560;
-        }
-
-        .text-input::placeholder {
-            color: rgba(255,255,255,0.3);
-        }
-
+        .text-input:focus { border-color: #e94560; }
+        .text-input::placeholder { color: rgba(255,255,255,0.3); }
         .submit-btn {
             background: linear-gradient(135deg, #e94560, #c23152);
-            border: none;
-            border-radius: 12px;
-            padding: 15px 25px;
-            color: #fff;
-            font-size: 1.05rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            font-family: inherit;
+            border: none; border-radius: 12px; padding: 15px 25px;
+            color: #fff; font-size: 1.05rem; font-weight: 600;
+            cursor: pointer; font-family: inherit;
         }
-
-        .submit-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
-        }
-
+        .submit-btn:hover { transform: scale(1.05); }
         .next-btn {
-            display: none;
-            width: 100%;
+            display: none; width: 100%;
             background: linear-gradient(135deg, #e94560, #c23152);
-            border: none;
-            border-radius: 12px;
-            padding: 16px;
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            font-family: inherit;
-            margin-top: 15px;
+            border: none; border-radius: 12px; padding: 16px;
+            color: #fff; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; font-family: inherit; margin-top: 15px;
         }
-
-        .next-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
-        }
-
+        .next-btn:hover { transform: scale(1.02); }
         .feedback {
-            margin-top: 15px;
-            padding: 12px 18px;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            display: none;
+            margin-top: 15px; padding: 12px 18px;
+            border-radius: 10px; font-size: 0.95rem; display: none;
         }
-
         .feedback.correct {
-            background: rgba(46, 213, 115, 0.15);
-            border: 1px solid rgba(46, 213, 115, 0.3);
-            color: #2ed573;
-            display: block;
+            background: rgba(46,213,115,0.15);
+            border: 1px solid rgba(46,213,115,0.3);
+            color: #2ed573; display: block;
         }
-
         .feedback.wrong {
-            background: rgba(255, 71, 87, 0.15);
-            border: 1px solid rgba(255, 71, 87, 0.3);
-            color: #ff6b81;
-            display: block;
+            background: rgba(255,71,87,0.15);
+            border: 1px solid rgba(255,71,87,0.3);
+            color: #ff6b81; display: block;
         }
-
-        /* Results screen */
-        .results {
-            text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .results h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
+        .results { text-align: center; animation: fadeIn 0.5s ease; }
+        .results h2 { font-size: 2rem; margin-bottom: 10px; }
         .score-circle {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.05);
-            border: 4px solid;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 30px auto;
+            width: 180px; height: 180px; border-radius: 50%;
+            background: rgba(255,255,255,0.05); border: 4px solid;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; margin: 30px auto;
         }
-
-        .score-circle .score-num {
-            font-size: 3rem;
-            font-weight: 700;
-        }
-
-        .score-circle .score-label {
-            font-size: 0.9rem;
-            color: #a0aec0;
-        }
-
-        .score-message {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: #a0aec0;
-        }
-
-        .restart-btn {
+        .score-num { font-size: 3rem; font-weight: 700; }
+        .score-label { font-size: 0.9rem; color: #a0aec0; }
+        .score-message { font-size: 1.2rem; margin-bottom: 30px; color: #a0aec0; }
+        .restart-btn, .start-btn {
             background: linear-gradient(135deg, #e94560, #c23152);
-            border: none;
-            border-radius: 12px;
-            padding: 16px 40px;
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            font-family: inherit;
+            border: none; border-radius: 12px;
+            padding: 18px 50px; color: #fff;
+            font-size: 1.2rem; font-weight: 700;
+            cursor: pointer; font-family: inherit;
         }
-
-        .restart-btn:hover {
+        .restart-btn:hover, .start-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+            box-shadow: 0 4px 20px rgba(233,69,96,0.5);
         }
-
-        /* Start screen */
-        .start-screen {
-            text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .start-screen h2 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #a0aec0;
-        }
-
-        .start-screen p {
-            color: #718096;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            font-size: 1.05rem;
-        }
-
-        .start-btn {
-            background: linear-gradient(135deg, #e94560, #c23152);
-            border: none;
-            border-radius: 12px;
-            padding: 18px 50px;
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            font-family: inherit;
-        }
-
-        .start-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 20px rgba(233, 69, 96, 0.5);
-        }
+        .start-screen { text-align: center; animation: fadeIn 0.5s ease; }
+        .start-screen h2 { font-size: 1.5rem; margin-bottom: 15px; color: #a0aec0; }
+        .start-screen p { color: #718096; margin-bottom: 30px; line-height: 1.6; font-size: 1.05rem; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Устаљени језички изрази</h1>
-            <p>Квиз знања — колико добро познајеш српски језик?</p>
-        </div>
-
-        <div id="start-screen" class="start-screen">
-            <h2>Добро дошли!</h2>
-            <p>Тестирајте своје знање устаљених језичких израза у српском језику. Квиз има 14 питања — за свако тачно добијате поен!</p>
-            <button class="start-btn" onclick="startQuiz()">Започни квиз</button>
-        </div>
-
-        <div id="quiz-area" style="display:none;">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress-fill"></div>
-            </div>
-            <div class="progress-text" id="progress-text"></div>
-            <div id="question-container"></div>
-        </div>
-
-        <div id="results-area" style="display:none;"></div>
+<div class="container">
+    <div class="header">
+        <h1>Устаљени језички изрази</h1>
+        <p>Квиз знања &mdash; колико добро познајеш српски језик?</p>
     </div>
+    <div id="start-screen" class="start-screen">
+        <h2>Добро дошли!</h2>
+        <p>Тестирајте своје знање устаљених језичких израза у српском језику.<br>Квиз има 14 питања &mdash; за свако тачно добијате поен!</p>
+        <button class="start-btn" id="startBtn">Започни квиз</button>
+    </div>
+    <div id="quiz-area" style="display:none;">
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+        <div class="progress-text" id="progress-text"></div>
+        <div id="question-container"></div>
+    </div>
+    <div id="results-area" style="display:none;"></div>
+</div>
+<script>
+(function() {
+    var questions = [
+        {
+            type: 'choice',
+            question: 'Одредите значење: <span class="highlight">\u201eЖиве као два голуба\u201c</span>',
+            options: ['Живе у гнезду', 'Живе у љубави и хармонији', 'Лете кроз живот'],
+            correct: 1,
+            feedback: 'Тачно! Овај израз значи живети у љубави и слози.'
+        },
+        {
+            type: 'choice',
+            question: 'Одредите значење истакнутог дела: \u201eЧувам те <span class="highlight">као мало воде на длану</span>\u201c',
+            options: ['Тихо', 'Пажљиво', 'Лоше'],
+            correct: 1,
+            feedback: 'Тачно! Значи чувати некога веома пажљиво и брижно.'
+        },
+        {
+            type: 'choice',
+            question: 'Одредите значење: \u201eОна увек говори <span class="highlight">без длаке на језику</span>\u201c',
+            options: ['Говори брзо', 'Говори отворено', 'Говори без оклевања'],
+            correct: 1,
+            feedback: 'Тачно! Значи говорити искрено и отворено, без устручавања.'
+        },
+        {
+            type: 'choice',
+            question: 'Одредите значење: <span class="highlight">\u201eКад на врби роди грожђе\u201c</span>',
+            options: ['За коју годину', 'Никад', 'Ускоро'],
+            correct: 1,
+            feedback: 'Тачно! Овај израз значи \u2014 никада.'
+        },
+        {
+            type: 'choice',
+            question: 'Одредите значење: \u201eОн се појавио <span class="highlight">као гром из ведра неба</span>\u201c',
+            options: ['Кад је киша почела', 'Очекивано', 'Изненада'],
+            correct: 2,
+            feedback: 'Тачно! Значи појавити се потпуно неочекивано, изненада.'
+        },
+        {
+            type: 'choice',
+            question: 'Кад неко <span class="highlight">\u201eједе као врабац\u201c</span>, он:',
+            options: ['Једе често', 'Једе мало', 'Кљуца'],
+            correct: 1,
+            feedback: 'Тачно! Овај израз значи јести веома мало.'
+        },
+        {
+            type: 'choice',
+            question: 'Одредите значење: \u201eОн је <span class="highlight">оцрнио свој образ</span>\u201c',
+            options: ['Постидео се', 'Упрљао лице', 'Изгубио част и поштење'],
+            correct: 2,
+            feedback: 'Тачно! Значи изгубити част, углед и поштење.'
+        },
+        {
+            type: 'choice',
+            question: 'Одредите значење: \u201eГледа ме <span class="highlight">као да је пао с крушке</span>\u201c',
+            options: ['Збуњено', 'Радознало', 'С великим интересовањем'],
+            correct: 0,
+            feedback: 'Тачно! Значи гледати збуњено, неупућено.'
+        },
+        {
+            type: 'choice',
+            question: 'Одредите значење: <span class="highlight">\u201eПравити од муве слона\u201c</span>',
+            options: ['Успети у вајарству', 'Преувеличавати', 'Бити духовит'],
+            correct: 1,
+            feedback: 'Тачно! Значи преувеличавати, правити велику ствар од ситнице.'
+        },
+        {
+            type: 'choice',
+            question: 'Одредите значење: \u201eСаша је седео <span class="highlight">као на иглама</span>\u201c',
+            options: ['Неудобно', 'Нервозно'],
+            correct: 1,
+            feedback: 'Тачно! Значи бити веома нервозан и нестрпљив.'
+        },
+        {
+            type: 'choice',
+            question: 'Одредите значење: \u201eОна је <span class="highlight">држала све конце у рукама</span>\u201c',
+            options: ['Волела да помаже', 'Вешто шила', 'Имала потпуну контролу над ситуацијом'],
+            correct: 2,
+            feedback: 'Тачно! Значи имати потпуну контролу и управљати свиме.'
+        },
+        {
+            type: 'choice',
+            question: 'Одредите значење: <span class="highlight">\u201eНи лук јео, ни лук мирисао\u201c</span>',
+            options: ['Остао гладан', 'Потпуно неумешан, невин'],
+            correct: 1,
+            feedback: 'Тачно! Значи бити потпуно неумешан у неку ситуацију.'
+        },
+        {
+            type: 'input',
+            question: 'Допуните израз: \u201eИвер не пада далеко од\u2026\u201c',
+            correct: ['кладе', 'Кладе', 'КЛАДЕ'],
+            feedback: 'Тачно! \u201eИвер не пада далеко од кладе\u201c \u2014 деца личе на родитеље.'
+        },
+        {
+            type: 'choice',
+            question: 'Кад неко <span class="highlight">\u201eмуцнуо главом\u201c</span>, он је:',
+            options: ['Размислио', 'Научио', 'Окренуо главу'],
+            correct: 0,
+            feedback: 'Тачно! Значи размислити, промислити о нечему.'
+        }
+    ];
 
-    <script>
-        const questions = [
-            {
-                type: "choice",
-                question: "Одредите значење: <span class='highlight'>„Живе као два голуба"</span>",
-                options: ["Живе у гнезду", "Живе у љубави и хармонији", "Лете кроз живот"],
-                correct: 1,
-                feedback: "Тачно! Овај израз значи живети у љубави и слози."
-            },
-            {
-                type: "choice",
-                question: "Одредите значење истакнутог дела: „Чувам те <span class='highlight'>као мало воде на длану</span>"",
-                options: ["Тихо", "Пажљиво", "Лоше"],
-                correct: 1,
-                feedback: "Тачно! Значи чувати некога веома пажљиво и брижно."
-            },
-            {
-                type: "choice",
-                question: "Одредите значење: „Она увек говори <span class='highlight'>без длаке на језику</span>"",
-                options: ["Говори брзо", "Говори отворено", "Говори без оклевања"],
-                correct: 1,
-                feedback: "Тачно! Значи говорити искрено и отворено, без устручавања."
-            },
-            {
-                type: "choice",
-                question: "Одредите значење: <span class='highlight'>„Кад на врби роди грожђе"</span>",
-                options: ["За коју годину", "Никад", "Ускоро"],
-                correct: 1,
-                feedback: "Тачно! Овај израз значи — никада."
-            },
-            {
-                type: "choice",
-                question: "Одредите значење: „Он се појавио <span class='highlight'>као гром из ведра неба</span>"",
-                options: ["Кад је киша почела", "Очекивано", "Изненада"],
-                correct: 2,
-                feedback: "Тачно! Значи појавити се потпуно неочекивано, изненада."
-            },
-            {
-                type: "choice",
-                question: "Кад неко <span class='highlight'>„једе као врабац"</span>, он:",
-                options: ["Једе често", "Једе мало", "Кљуца"],
-                correct: 1,
-                feedback: "Тачно! Овај израз значи јести веома мало."
-            },
-            {
-                type: "choice",
-                question: "Одредите значење: „Он је <span class='highlight'>оцрнио свој образ</span>"",
-                options: ["Постидео се", "Упрљао лице", "Изгубио част и поштење"],
-                correct: 2,
-                feedback: "Тачно! Значи изгубити част, углед и поштење."
-            },
-            {
-                type: "choice",
-                question: "Одредите значење: „Гледа ме <span class='highlight'>као да је пао с крушке</span>"",
-                options: ["Збуњено", "Радознало", "С великим интересовањем"],
-                correct: 0,
-                feedback: "Тачно! Значи гледати збуњено, неупућено."
-            },
-            {
-                type: "choice",
-                question: "Одредите значење: <span class='highlight'>„Правити од муве слона"</span>",
-                options: ["Успети у вајарству", "Преувеличавати", "Бити духовит"],
-                correct: 1,
-                feedback: "Тачно! Значи преувеличавати, правити велику ствар од ситнице."
-            },
-            {
-                type: "choice",
-                question: "Одредите значење: „Саша је седео <span class='highlight'>као на иглама</span>"",
-                options: ["Неудобно", "Нервозно"],
-                correct: 1,
-                feedback: "Тачно! Значи бити веома нервозан и нестрпљив."
-            },
-            {
-                type: "choice",
-                question: "Одредите значење: „Она је <span class='highlight'>држала све конце у рукама</span>"",
-                options: ["Волела да помаже", "Вешто шила", "Имала потпуну контролу над ситуацијом"],
-                correct: 2,
-                feedback: "Тачно! Значи имати потпуну контролу и управљати свиме."
-            },
-            {
-                type: "choice",
-                question: "Одредите значење: <span class='highlight'>„Ни лук јео, ни лук мирисао"</span>",
-                options: ["Остао гладан", "Потпуно неумешан, невин"],
-                correct: 1,
-                feedback: "Тачно! Значи бити потпуно неумешан у неку ситуацију."
-            },
-            {
-                type: "input",
-                question: "Допуните израз: „Ивер не пада далеко од…"",
-                correct: ["кладе", "Кладе", "КЛАДЕ"],
-                feedback: "Тачно! „Ивер не пада далеко од кладе" — деца личе на родитеље."
-            },
-            {
-                type: "choice",
-                question: "Кад неко <span class='highlight'>„муцнуо главом"</span>, он је:",
-                options: ["Размислио", "Научио", "Окренуо главу"],
-                correct: 0,
-                feedback: "Тачно! Значи размислити, промислити о нечему."
+    var currentQuestion = 0;
+    var score = 0;
+    var answered = false;
+
+    document.getElementById('startBtn').addEventListener('click', function() {
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('quiz-area').style.display = 'block';
+        currentQuestion = 0;
+        score = 0;
+        showQuestion();
+    });
+
+    function showQuestion() {
+        answered = false;
+        var q = questions[currentQuestion];
+        var total = questions.length;
+        var progress = (currentQuestion / total) * 100;
+        document.getElementById('progress-fill').style.width = progress + '%';
+        document.getElementById('progress-text').textContent = '\u041f\u0438\u0442\u0430\u045a\u0435 ' + (currentQuestion + 1) + ' \u043e\u0434 ' + total;
+
+        var container = document.getElementById('question-container');
+        container.innerHTML = '';
+        var card = document.createElement('div');
+        card.className = 'question-card';
+
+        var qNum = document.createElement('div');
+        qNum.className = 'question-number';
+        qNum.textContent = '\u041f\u0438\u0442\u0430\u045a\u0435 ' + (currentQuestion + 1);
+        card.appendChild(qNum);
+
+        var qText = document.createElement('div');
+        qText.className = 'question-text';
+        qText.innerHTML = q.question;
+        card.appendChild(qText);
+
+        if (q.type === 'choice') {
+            var opts = document.createElement('div');
+            opts.className = 'options';
+            for (var i = 0; i < q.options.length; i++) {
+                (function(idx) {
+                    var btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = q.options[idx];
+                    btn.id = 'opt-' + idx;
+                    btn.addEventListener('click', function() { selectAnswer(idx); });
+                    opts.appendChild(btn);
+                })(i);
             }
-        ];
-
-        let currentQuestion = 0;
-        let score = 0;
-        let answered = false;
-
-        function startQuiz() {
-            document.getElementById('start-screen').style.display = 'none';
-            document.getElementById('quiz-area').style.display = 'block';
-            currentQuestion = 0;
-            score = 0;
-            showQuestion();
+            card.appendChild(opts);
+        } else {
+            var ig = document.createElement('div');
+            ig.className = 'input-group';
+            var inp = document.createElement('input');
+            inp.type = 'text';
+            inp.className = 'text-input';
+            inp.id = 'text-answer';
+            inp.placeholder = '\u0423\u043d\u0435\u0441\u0438\u0442\u0435 \u043e\u0434\u0433\u043e\u0432\u043e\u0440...';
+            inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') checkTextAnswer(); });
+            ig.appendChild(inp);
+            var sbtn = document.createElement('button');
+            sbtn.className = 'submit-btn';
+            sbtn.textContent = '\u041f\u043e\u0442\u0432\u0440\u0434\u0438';
+            sbtn.addEventListener('click', checkTextAnswer);
+            ig.appendChild(sbtn);
+            card.appendChild(ig);
         }
 
-        function showQuestion() {
-            answered = false;
-            const q = questions[currentQuestion];
-            const total = questions.length;
-            const progress = (currentQuestion / total) * 100;
+        var fb = document.createElement('div');
+        fb.className = 'feedback';
+        fb.id = 'feedback';
+        card.appendChild(fb);
 
-            document.getElementById('progress-fill').style.width = progress + '%';
-            document.getElementById('progress-text').textContent = `Питање ${currentQuestion + 1} од ${total}`;
-
-            let html = `<div class="question-card">
-                <div class="question-number">Питање ${currentQuestion + 1}</div>
-                <div class="question-text">${q.question}</div>`;
-
-            if (q.type === "choice") {
-                html += `<div class="options">`;
-                q.options.forEach((opt, i) => {
-                    html += `<button class="option-btn" onclick="selectAnswer(${i})" id="opt-${i}">${opt}</button>`;
-                });
-                html += `</div>`;
-            } else {
-                html += `<div class="input-group">
-                    <input type="text" class="text-input" id="text-answer" placeholder="Унесите одговор на ћирилици..." onkeydown="if(event.key==='Enter')checkTextAnswer()">
-                    <button class="submit-btn" onclick="checkTextAnswer()">Потврди</button>
-                </div>`;
-            }
-
-            html += `<div class="feedback" id="feedback"></div>`;
-            html += `<button class="next-btn" id="next-btn" onclick="nextQuestion()">Следеће питање</button>`;
-            html += `</div>`;
-
-            document.getElementById('question-container').innerHTML = html;
-        }
-
-        function selectAnswer(index) {
-            if (answered) return;
-            answered = true;
-
-            const q = questions[currentQuestion];
-            const feedback = document.getElementById('feedback');
-            const nextBtn = document.getElementById('next-btn');
-
-            // Disable all buttons
-            q.options.forEach((_, i) => {
-                document.getElementById(`opt-${i}`).classList.add('disabled');
-            });
-
-            if (index === q.correct) {
-                score++;
-                document.getElementById(`opt-${index}`).classList.add('correct');
-                feedback.className = 'feedback correct';
-                feedback.textContent = q.feedback;
-            } else {
-                document.getElementById(`opt-${index}`).classList.add('wrong');
-                document.getElementById(`opt-${q.correct}`).classList.add('show-correct');
-                feedback.className = 'feedback wrong';
-                feedback.textContent = `Нетачно! Тачан одговор: ${q.options[q.correct]}`;
-            }
-
-            nextBtn.style.display = 'block';
-            if (currentQuestion === questions.length - 1) {
-                nextBtn.textContent = 'Погледај резултат';
-            }
-        }
-
-        function checkTextAnswer() {
-            if (answered) return;
-            const input = document.getElementById('text-answer');
-            const answer = input.value.trim();
-            if (!answer) return;
-
-            answered = true;
-            const q = questions[currentQuestion];
-            const feedback = document.getElementById('feedback');
-            const nextBtn = document.getElementById('next-btn');
-
-            input.disabled = true;
-
-            if (q.correct.includes(answer)) {
-                score++;
-                input.style.borderColor = '#2ed573';
-                feedback.className = 'feedback correct';
-                feedback.textContent = q.feedback;
-            } else {
-                input.style.borderColor = '#ff4757';
-                feedback.className = 'feedback wrong';
-                feedback.textContent = `Нетачно! Тачан одговор: ${q.correct[0]}`;
-            }
-
-            nextBtn.style.display = 'block';
-            if (currentQuestion === questions.length - 1) {
-                nextBtn.textContent = 'Погледај резултат';
-            }
-        }
-
-        function nextQuestion() {
+        var nextBtn = document.createElement('button');
+        nextBtn.className = 'next-btn';
+        nextBtn.id = 'next-btn';
+        nextBtn.textContent = '\u0421\u043b\u0435\u0434\u0435\u045b\u0435 \u043f\u0438\u0442\u0430\u045a\u0435';
+        nextBtn.addEventListener('click', function() {
             currentQuestion++;
-            if (currentQuestion < questions.length) {
-                showQuestion();
-            } else {
-                showResults();
-            }
+            if (currentQuestion < questions.length) { showQuestion(); }
+            else { showResults(); }
+        });
+        card.appendChild(nextBtn);
+        container.appendChild(card);
+    }
+
+    function selectAnswer(index) {
+        if (answered) return;
+        answered = true;
+        var q = questions[currentQuestion];
+        var fb = document.getElementById('feedback');
+        var nextBtn = document.getElementById('next-btn');
+        for (var i = 0; i < q.options.length; i++) {
+            document.getElementById('opt-' + i).classList.add('disabled');
         }
-
-        function showResults() {
-            document.getElementById('quiz-area').style.display = 'none';
-            const resultsArea = document.getElementById('results-area');
-            resultsArea.style.display = 'block';
-
-            const total = questions.length;
-            const percent = Math.round((score / total) * 100);
-
-            let borderColor, message;
-            if (percent >= 85) {
-                borderColor = '#2ed573';
-                message = 'Одлично! Мајстор си српског језика!';
-            } else if (percent >= 60) {
-                borderColor = '#f5a623';
-                message = 'Врло добро! Имаш солидно знање!';
-            } else if (percent >= 40) {
-                borderColor = '#ffa502';
-                message = 'Може боље! Настави да учиш!';
-            } else {
-                borderColor = '#ff4757';
-                message = 'Не одустај! Пробај поново!';
-            }
-
-            resultsArea.innerHTML = `
-                <div class="results">
-                    <h2>Резултат квиза</h2>
-                    <div class="score-circle" style="border-color: ${borderColor}">
-                        <div class="score-num" style="color: ${borderColor}">${score}/${total}</div>
-                        <div class="score-label">${percent}% тачних</div>
-                    </div>
-                    <div class="score-message">${message}</div>
-                    <button class="restart-btn" onclick="restartQuiz()">Покушај поново</button>
-                </div>
-            `;
+        if (index === q.correct) {
+            score++;
+            document.getElementById('opt-' + index).classList.add('correct');
+            fb.className = 'feedback correct';
+            fb.textContent = q.feedback;
+        } else {
+            document.getElementById('opt-' + index).classList.add('wrong');
+            document.getElementById('opt-' + q.correct).classList.add('show-correct');
+            fb.className = 'feedback wrong';
+            fb.textContent = '\u041d\u0435\u0442\u0430\u0447\u043d\u043e! \u0422\u0430\u0447\u0430\u043d \u043e\u0434\u0433\u043e\u0432\u043e\u0440: ' + q.options[q.correct];
         }
+        nextBtn.style.display = 'block';
+        if (currentQuestion === questions.length - 1) {
+            nextBtn.textContent = '\u041f\u043e\u0433\u043b\u0435\u0434\u0430\u0458 \u0440\u0435\u0437\u0443\u043b\u0442\u0430\u0442';
+        }
+    }
 
-        function restartQuiz() {
-            document.getElementById('results-area').style.display = 'none';
+    function checkTextAnswer() {
+        if (answered) return;
+        var inp = document.getElementById('text-answer');
+        var answer = inp.value.trim();
+        if (!answer) return;
+        answered = true;
+        var q = questions[currentQuestion];
+        var fb = document.getElementById('feedback');
+        var nextBtn = document.getElementById('next-btn');
+        inp.disabled = true;
+        if (q.correct.indexOf(answer) !== -1) {
+            score++;
+            inp.style.borderColor = '#2ed573';
+            fb.className = 'feedback correct';
+            fb.textContent = q.feedback;
+        } else {
+            inp.style.borderColor = '#ff4757';
+            fb.className = 'feedback wrong';
+            fb.textContent = '\u041d\u0435\u0442\u0430\u0447\u043d\u043e! \u0422\u0430\u0447\u0430\u043d \u043e\u0434\u0433\u043e\u0432\u043e\u0440: ' + q.correct[0];
+        }
+        nextBtn.style.display = 'block';
+        if (currentQuestion === questions.length - 1) {
+            nextBtn.textContent = '\u041f\u043e\u0433\u043b\u0435\u0434\u0430\u0458 \u0440\u0435\u0437\u0443\u043b\u0442\u0430\u0442';
+        }
+    }
+
+    function showResults() {
+        document.getElementById('quiz-area').style.display = 'none';
+        var ra = document.getElementById('results-area');
+        ra.style.display = 'block';
+        var total = questions.length;
+        var percent = Math.round((score / total) * 100);
+        var borderColor, message;
+        if (percent >= 85) { borderColor = '#2ed573'; message = '\u041e\u0434\u043b\u0438\u0447\u043d\u043e! \u041c\u0430\u0458\u0441\u0442\u043e\u0440 \u0441\u0438 \u0441\u0440\u043f\u0441\u043a\u043e\u0433 \u0458\u0435\u0437\u0438\u043a\u0430!'; }
+        else if (percent >= 60) { borderColor = '#f5a623'; message = '\u0412\u0440\u043b\u043e \u0434\u043e\u0431\u0440\u043e! \u0418\u043c\u0430\u0448 \u0441\u043e\u043b\u0438\u0434\u043d\u043e \u0437\u043d\u0430\u045a\u0435!'; }
+        else if (percent >= 40) { borderColor = '#ffa502'; message = '\u041c\u043e\u0436\u0435 \u0431\u043e\u0459\u0435! \u041d\u0430\u0441\u0442\u0430\u0432\u0438 \u0434\u0430 \u0443\u0447\u0438\u0448!'; }
+        else { borderColor = '#ff4757'; message = '\u041d\u0435 \u043e\u0434\u0443\u0441\u0442\u0430\u0458! \u041f\u0440\u043e\u0431\u0430\u0458 \u043f\u043e\u043d\u043e\u0432\u043e!'; }
+
+        ra.innerHTML = '<div class="results">' +
+            '<h2>\u0420\u0435\u0437\u0443\u043b\u0442\u0430\u0442 \u043a\u0432\u0438\u0437\u0430</h2>' +
+            '<div class="score-circle" style="border-color:' + borderColor + '">' +
+            '<div class="score-num" style="color:' + borderColor + '">' + score + '/' + total + '</div>' +
+            '<div class="score-label">' + percent + '% \u0442\u0430\u0447\u043d\u0438\u0445</div></div>' +
+            '<div class="score-message">' + message + '</div>' +
+            '<button class="restart-btn" id="restartBtn">\u041f\u043e\u043a\u0443\u0448\u0430\u0458 \u043f\u043e\u043d\u043e\u0432\u043e</button></div>';
+
+        document.getElementById('restartBtn').addEventListener('click', function() {
+            ra.style.display = 'none';
             document.getElementById('quiz-area').style.display = 'block';
             currentQuestion = 0;
             score = 0;
             showQuestion();
-        }
-    </script>
+        });
+    }
+})();
+</script>
 </body>
 </html>
